@@ -1,22 +1,65 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:memes_manager/app/logger/app_log.dart';
 
-class AppBlocObserver extends BlocObserver {
-  const AppBlocObserver();
+class AppProviderObserver extends ProviderObserver {
+  const AppProviderObserver();
 
   @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
+  void didAddProvider(
+    ProviderBase<Object?> provider,
+    Object? value,
+    ProviderContainer container,
+  ) {
+    logger.t('''
+didAddProvider{
+  provider: ${provider.name ?? provider.runtimeType}, container: $container,
+  initValue: $value,
+}''');
   }
 
   @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
+  void providerDidFail(
+    ProviderBase<Object?> provider,
+    Object error,
+    StackTrace stackTrace,
+    ProviderContainer container,
+  ) {
+    logger.e('''
+providerDidFail{
+  provider: ${provider.name ?? provider.runtimeType}, container: $container,
+  error: $error, stackTrace: $stackTrace, 
+}''');
+  }
+
+  @override
+  void didUpdateProvider(
+    ProviderBase<Object?> provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
+    logger.t('''
+didUpdateProvider{
+  provider: ${provider.name ?? provider.runtimeType}, container: $container,
+  previousValue: $previousValue,
+  newValue: $newValue,
+}''');
+  }
+
+  @override
+  void didDisposeProvider(
+    ProviderBase<Object?> provider,
+    ProviderContainer container,
+  ) {
+    logger.d('''
+didDisposeProvider{
+  provider: ${provider.name ?? provider.runtimeType},
+  container: $container,
+}''');
   }
 }
 
@@ -24,8 +67,6 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
-
-  Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
 

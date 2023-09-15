@@ -1,26 +1,48 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memes_manager/counter/counter.dart';
+import 'package:mocktail/mocktail.dart';
+
+class Listener extends Mock {
+  void call(int? previous, int value);
+}
 
 void main() {
   group('CounterCubit', () {
     test('initial state is 0', () {
-      expect(CounterCubit().state, equals(0));
+      final container = ProviderContainer();
+      final listener = Listener();
+      container.listen(counterProvider, listener.call, fireImmediately: true);
+      verify(() => listener(null, 0)).called(1);
+      verifyNoMoreInteractions(listener);
     });
 
-    blocTest<CounterCubit, int>(
-      'emits [1] when increment is called',
-      build: CounterCubit.new,
-      act: (cubit) => cubit.increment(),
-      expect: () => [equals(1)],
-    );
+    test('state increase', () {
+      final container = ProviderContainer();
+      final listener = Listener();
+      container.listen(counterProvider, listener.call, fireImmediately: true);
+      verify(() => listener(null, 0)).called(1);
+      verifyNoMoreInteractions(listener);
 
-    blocTest<CounterCubit, int>(
-      'emits [-1] when decrement is called',
-      build: CounterCubit.new,
-      act: (cubit) => cubit.decrement(),
-      expect: () => [equals(-1)],
-    );
+      // call state +1
+      container.read(counterProvider.notifier).increment();
+
+      verify(() => listener(0, 1)).called(1);
+      verifyNoMoreInteractions(listener);
+    });
+
+    test('state decrease', () {
+      final container = ProviderContainer();
+      final listener = Listener();
+      container.listen(counterProvider, listener.call, fireImmediately: true);
+      verify(() => listener(null, 0)).called(1);
+      verifyNoMoreInteractions(listener);
+
+      // call state +1
+      container.read(counterProvider.notifier).decrement();
+
+      verify(() => listener(0, -1)).called(1);
+      verifyNoMoreInteractions(listener);
+    });
   });
 }
