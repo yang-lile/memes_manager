@@ -62,7 +62,7 @@ void main() {
 
     testWidgets('calls decrement when decrement button is tapped',
         (tester) async {
-            final container = ProviderContainer();
+      final container = ProviderContainer();
       await tester.pumpApp(
         ProviderScope(
           parent: container,
