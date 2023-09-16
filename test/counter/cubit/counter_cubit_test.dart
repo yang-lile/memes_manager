@@ -3,9 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memes_manager/counter/counter.dart';
 import 'package:mocktail/mocktail.dart';
 
-class Listener extends Mock {
-  void call(int? previous, int value);
-}
+import '../../helpers/helpers.dart';
 
 void main() {
   group('CounterCubit', () {
