@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:memes_manager/app/logger/app_log.dart';
+import 'package:memes_manager/work_directory/provider/app_document_directory_provider.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AppProviderObserver extends ProviderObserver {
   const AppProviderObserver();
@@ -70,5 +72,14 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   // Add cross-flavor configuration here
 
-  runApp(await builder());
+  final appDocDirectory = await getApplicationDocumentsDirectory();
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        appDocumentDirectoryProvider.overrideWithValue(appDocDirectory),
+      ],
+      child: await builder(),
+    ),
+  );
 }
