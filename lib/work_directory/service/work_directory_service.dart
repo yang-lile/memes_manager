@@ -10,11 +10,11 @@ WorkDirectoryService workDirectoryService(WorkDirectoryServiceRef ref) =>
     WorkDirectoryService(ref.watch(appDocumentDirectoryProvider));
 
 class WorkDirectoryService {
-  WorkDirectoryService(this.appDocumentDir);
+  WorkDirectoryService(this._appDocumentDir);
 
-  Directory appDocumentDir;
+  final Directory _appDocumentDir;
 
   Directory getWorkDirecory() {
-    return appDocumentDir;
+    return _appDocumentDir;
   }
 }
