@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memes_manager/counter/counter.dart';
+import 'package:memes_manager/home/view/home_page.dart';
 import 'package:memes_manager/l10n/l10n.dart';
 
 class App extends StatelessWidget {
@@ -8,15 +8,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateTitle: (context) => context.l10n.appTitle,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
+        useMaterial3: true,
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const HomePage(),
     );
   }
 }

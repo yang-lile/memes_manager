@@ -1,0 +1,76 @@
+{
+    "@@locale": "zh",
+    "appBarTitle": "Memes",
+    "@appBarTitle": {
+        "description": "应用主页的状态栏标题"
+    },
+    "fabAddMemes": "添加Memes",
+    "@fabAddMemes": {
+        "description": "添加表情包的FAB按钮"
+    },
+    "shareSuccess": "分享成功！",
+    "@shareSuccess": {
+        "description": "分享成功时弹出的snackbar"
+    },
+    "deleteMeme": "删除",
+    "@deleteMeme": {
+        "description": "删除按钮"
+    },
+    "prefixTextRename": "重命名：",
+    "@prefixTextRename": {
+        "description": "重命名的前导提示"
+    },
+    "helperTextDenyInput": "禁止输入 \\ / : * ? \" < > | 空格",
+    "@helperTextDenyInput": {
+        "description": "输入的帮助提示语句"
+    },
+    "addMemesAppBarTitle": "添加表情包",
+    "@addMemesAppBarTitle": {
+        "description": "添加表情包页的应用状态栏标题"
+    },
+    "getMemesError": "获取表情包错误！",
+    "@getMemesError": {
+        "description": "当获取表情包时触发的未知错误"
+    },
+    "addMemesPackageTitle": "新增表情包组",
+    "@addMemesPackageTitle": {
+        "description": "添加一组表情包的详情"
+    },
+    "addMemesPackageErrorHint": "不可为空",
+    "@addMemesPackageErrorHint": {
+        "description": "当包的名字为空的时候，提示不可为空。"
+    },
+    "addMemesPackageConfirm": "添加",
+    "@addMemesPackageConfirm": {
+        "description": "确认添加按钮"
+    },
+    "addMemesPackageMemesGroupNameLabelText": "表情包组名",
+    "addMemesPackageMemesAuthorLabelText": "表情包作者",
+    "removeMemesPackageTitle": "是否删除{memesPackageName}？",
+    "@removeMemesPackageTitle": {
+        "description": "删除表情包组的对话框标题",
+        "placeholders": {
+            "memesPackageName": {
+                "description": "表情包组名称"
+            }
+        }
+    },
+    "removeMemesPackageContent": "其中包含了{memesCount}个表情包。",
+    "@removeMemesPackageContent": {
+        "description": "删除表情包组的对话框内容",
+        "placeholders": {
+            "memesCount": {
+                "description": "表情包组含有表情包的数量"
+            }
+        }
+    },
+    "removeMemesPackageYes": "确定",
+    "@removeMemesPackageYes": {
+        "description": "确认删除按钮"
+    },
+    "removeMemesPackageNo": "取消",
+    "@removeMemesPackageNo": {
+        "description": "取消操作按钮"
+    },
+    "appTitle": "表情包"
+}

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:memes_manager/meme/model/meme_model.dart';
+import 'package:memes_manager/memes_package/model/meme_model.dart';
 
 part 'memes_package_model.freezed.dart';
 
