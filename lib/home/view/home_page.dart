@@ -45,10 +45,10 @@ class HomeView extends HookWidget {
                   tabs: [...memesPackages.map((e) => Tab(text: e.packageName))],
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.menu),
-              ),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(Icons.menu),
+              // ),
             ],
           ),
         ),

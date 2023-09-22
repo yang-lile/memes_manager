@@ -19,18 +19,19 @@ class MemesPackageRepository {
 
   Future<List<MemesPackageModel>> getAllMemesPackage() async {
     final workDirectory = _workDirectoryService.getWorkDirecory();
-    final workDirectories = workDirectory.list();
+    final workDirectories = await workDirectory.list().toList();
     final memesPackageModels = <MemesPackageModel>[];
 
-    await for (final element in workDirectories) {
+    for (final element in workDirectories) {
       if (element.statSync().type == FileSystemEntityType.directory) {
         final directory = element as Directory;
 
         final basenameWithoutExtension =
             p.basenameWithoutExtension(directory.path);
         final split = basenameWithoutExtension.split('_');
-        final count = await directory.list().length;
-        final memes = directory.listSync().map((e) {
+        final list = await directory.list().toList();
+        final count = list.length;
+        final memes = list.map((e) {
           return MemeModel(filePath: e.path);
         }).toList();
 
